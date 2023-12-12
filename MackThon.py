@@ -149,7 +149,7 @@ async def my_event_handler(event):
             try:
                 haso = await MackThon.get_entity(channel_username)
                 join = await MackThon(JoinChannelRequest(channel_username))
-                msg = await MackThon.get_messages(chn, ids=message_id)
+                msg = await MackThon.get_messages(channel_username, ids=message_id)
                 await msg.click(0)
                 sleep(1)
                 await event.respond('ersyor\\nتم إضافة التفاعل بنجاح!')
