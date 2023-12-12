@@ -137,22 +137,29 @@ async def OwnerStart(event):
 import re
 
 @MackThon.on(events.NewMessage(outgoing=False, pattern='^Mvoice (.*)'))
-async def OwnerStart(event):
-    sender = await event.get_sender()
-    if sender.id in ownerhson_id:
-        url = event.pattern_match.group(1)
-        match = re.search(r't.me/(.*?)/(\d+)', url)
-        if match:
-            chn, msg_id = match.groups()
-            msg_id = int(msg_id)
-            wait = await MackThon.send_message(ownerhson_id,'**⚝ حسناً سوف اقوم بالانضمام والتصويت**')
-            haso = await MackThon.get_entity(chn)
-            join = await MackThon(JoinChannelRequest(chn))
-            joion = await MackThon(JoinChannelRequest('saythonh'))
-            msg = await MackThon.get_messages(chn, ids=msg_id)
-            await msg.click(0)
-            sleep(1)
-            await MackThon.send_message(ownerhson_id,'**⚝ قمت بالانضمام والتصويت بنجاح**')
+@MackThon.on(events.NewMessage(pattern='Mvoice'))
+async def my_event_handler(event):
+    message = event.message.message
+    message_parts = message.split()
+    if len(message_parts) == 2:
+        url = message_parts[1]
+        url_parts = url.split('/')
+        if len(url_parts) == 5:
+            channel_username = url_parts[3]
+            message_id = int(url_parts[4])
+            try:
+            	haso = await MackThon.get_entity(channel_username)
+                join = await MackThon(JoinChannelRequest(channel_username))
+                msg = await MackThon.get_messages(chn, ids=message_id)
+                await msg.click(0)
+                sleep(1)
+                await event.respond('ersyor\\nتم إضافة التفاعل بنجاح!')
+            except Exception as e:
+                await event.respond(f'ersyor\\nحدث خطأ: {str(e)}')
+        else:
+            await event.respond('الرابط غير صحيح')
+    else:
+        await event.respond('الرجاء إرسال الرابط مع الأمر')
 
 
 @MackThon.on(events.NewMessage(outgoing=False, pattern='/point1'))
