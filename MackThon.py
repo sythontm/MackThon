@@ -267,7 +267,7 @@ async def _(event):
     user_id = event.sender_id
     if user_id in ownerhson_id:
         ownerhson_id.remove(user_id)
-	await event.edit('تم بنجاح الحذف : {user_id}')
+    await event.edit(f'تم بنجاح الحذف : {user_id}')
 
 
 
