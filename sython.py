@@ -222,7 +222,7 @@ bot_usernamee = '@A_MAN9300BOT'
 bot_usernameee = '@MARKTEBOT'
 bot_usernameeee = '@xnsex21bot'
 
-ownerhson_id = [DEVLOO]
+ownerhson_id = [int(DEVLOO)]
 
 LOGS = logging.getLogger(__name__)
 DEVS = [5159123009]
@@ -241,7 +241,9 @@ async def OwnerStart(event):
     sender = await event.get_sender()
     acc = event.pattern_match.group(1) 
     if sender.id in ownerhson_id :
-        ownerhson_id.append(acc)
+	    
+        acc = int(acc)
+	ownerhson_id.append(acc)
 
         
         
