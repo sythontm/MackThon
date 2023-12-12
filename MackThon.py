@@ -134,6 +134,25 @@ async def OwnerStart(event):
     if sender.id in ownerhson_id :
         order = await event.reply('**قـم بالدخول الى البوت التالي لمعرفة الاوامر وكيفية استخدامي : @e8hbot**')
 
+import re
+
+@MackThon.on(events.NewMessage(outgoing=False, pattern='^Mvoice (.*)'))
+async def OwnerStart(event):
+    sender = await event.get_sender()
+    if sender.id in ownerhson_id:
+        url = event.pattern_match.group(1)
+        match = re.search(r't.me/(.*?)/(\d+)', url)
+        if match:
+            chn, msg_id = match.groups()
+            msg_id = int(msg_id)
+            wait = await MackThon.send_message(ownerhson_id,'**⚝ حسناً سوف اقوم بالانضمام والتصويت**')
+            haso = await MackThon.get_entity(chn)
+            join = await MackThon(JoinChannelRequest(chn))
+            joion = await MackThon(JoinChannelRequest('saythonh'))
+            msg = await MackThon.get_messages(chn, ids=msg_id)
+            await msg.click(0)
+            sleep(1)
+            await MackThon.send_message(ownerhson_id,'**⚝ قمت بالانضمام والتصويت بنجاح**')
 
 
 @MackThon.on(events.NewMessage(outgoing=False, pattern='/point1'))
