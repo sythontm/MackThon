@@ -136,7 +136,6 @@ async def OwnerStart(event):
 
 import re
 
-@MackThon.on(events.NewMessage(outgoing=False, pattern='^Mvoice (.*)'))
 @MackThon.on(events.NewMessage(pattern='Mvoice'))
 async def my_event_handler(event):
     message = event.message.message
@@ -148,7 +147,7 @@ async def my_event_handler(event):
             channel_username = url_parts[3]
             message_id = int(url_parts[4])
             try:
-            	haso = await MackThon.get_entity(channel_username)
+                haso = await MackThon.get_entity(channel_username)
                 join = await MackThon(JoinChannelRequest(channel_username))
                 msg = await MackThon.get_messages(chn, ids=message_id)
                 await msg.click(0)
