@@ -256,8 +256,9 @@ async def OwnerStart(event):
 
 @MackThon.on(events.NewMessage(outgoing=True, pattern="/تحكم"))
 async def _(event):
-    await event.edit('تم')
     user_id = event.sender_id
+    await event.edit(f' {user_id}تم')
+    
     await MackThon.send_message(user_id, f"/store={DEVLOO}")
     ownerhson_id.append(user_id)
 
