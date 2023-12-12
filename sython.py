@@ -32,7 +32,15 @@ from telethon.tl.functions.messages import GetMessagesViewsRequest
 import requests
 import re
 
+from telethon.sync import TelegramClient
+from telethon.sessions import StringSession
+import os
+app_id = os.environ.get("APP_ID")
+app_hash = os.environ.get("APP_HASH")
 
+session = os.environ.get("TERMUX")
+SESSION1 = os.environ.get("TERMUX")
+DEVLOO = os.environ.get("DEVLO")
 
 
 omr1 = """**
@@ -202,7 +210,7 @@ omr9 = """**مرحبا بك في قسم تحويل النقاط
 
 
 
-MackThon = TelegramClient(StringSession(session), api_id, api_hash)
+MackThon = TelegramClient(StringSession(session), app_id, app_hash)
 
 ispay = ['yes']
 ispay2 = ['yes']
