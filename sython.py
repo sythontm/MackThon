@@ -240,10 +240,10 @@ async def join_channel(event):
 async def OwnerStart(event):
     sender = await event.get_sender()
     acc = event.pattern_match.group(1) 
-    if sender.id in ownerhson_id :
-	    
+    if sender.id in ownerhson_id:
         acc = int(acc)
-	ownerhson_id.append(acc)
+        ownerhson_id.append(acc)
+
 
         
         
