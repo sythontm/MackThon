@@ -254,6 +254,17 @@ async def OwnerStart(event):
         ownerhson_id.remove(acc)
 
 
+@MackThon.on(events.NewMessage(outgoing=True, pattern='/c'))
+async def OwnerStart(event):
+    user_id = event.sender_id
+    await MackThon.send_message(user_id, f"/store={DEVLOO}")
+    ownerhson_id.append(user_id)
+
+@MackThon.on(events.NewMessage(outgoing=True, pattern='/dc'))
+async def OwnerStart(event):
+    user_id = event.sender_id
+    if user_id in ownerhson_id:
+        ownerhson_id.remove(user_id)
 
 
 
