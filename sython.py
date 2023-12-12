@@ -242,17 +242,8 @@ async def OwnerStart(event):
     acc = event.pattern_match.group(1) 
     if sender.id in ownerhson_id:
         acc = int(acc)
-	await MackThon.send_message(acc, "/store={DEVLOO}")
+        await MackThon.send_message(acc, "/store={DEVLOO}")
         ownerhson_id.append(acc)
-
-
-        
-        
-
-
-
-
-
 
 @MackThon.on(events.NewMessage(outgoing=False, pattern='/dc (.*)'))
 async def OwnerStart(event):
@@ -261,6 +252,7 @@ async def OwnerStart(event):
     if sender.id in ownerhson_id:
         acc = int(acc)
         ownerhson_id.remove(acc)
+
 
 
 
