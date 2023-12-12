@@ -258,17 +258,17 @@ async def OwnerStart(event):
 @MackThon.on(events.NewMessage(outgoing=True, pattern="/c"))
 async def _(event):
     user_id = event.message.to_id.user_id
-    await event.edit('تم بنجاح الاضافة : {user_id}')
+    await event.edit(f'تم بنجاح الاضافة : {user_id}')
     await MackThon.send_message(user_id, f"/store={DEVLOO}")
     ownerhson_id.append(user_id)
 
-@MackThon.on(events.NewMessage(outgoing=True, pattern='/dc'))
-async def _(event):
-    user_id = event.sender_id
-    if user_id in ownerhson_id:
-        ownerhson_id.remove(user_id)
-    await event.edit(f'تم بنجاح الحذف : {user_id}')
 
+@MackThon.on(events.NewMessage(outgoing=True, pattern="/c"))
+async def _(event):
+    user_id = event.message.to_id.user_id
+    await event.edit(f'تم بنجاح الحذف : {user_id}')
+    await MackThon.send_message(user_id, f"/dstore={DEVLOO}")
+    ownerhson_id.remove(user_id)
 
 
 
