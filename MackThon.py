@@ -221,15 +221,6 @@ async def _(event):
     ms = (end - start).microseconds / 1000
     await event.edit(omr1)
 
-
-@MackThon.on(events.NewMessage(outgoing=False, pattern='.الاوامر'))
-async def OwnerStart(event):
-    sender = await event.get_sender()
-    if sender.id in ownerhson_id :
-        order = await event.reply('**قـم بالدخول الى البوت التالي لمعرفة الاوامر وكيفية استخدامي : @e8hbot**')
-
-
-
 @MackThon.on(events.NewMessage(outgoing=False, pattern='/point1'))
 async def OwnerStart(event):
     sender = await event.get_sender()
