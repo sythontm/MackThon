@@ -222,7 +222,7 @@ bot_usernamee = '@A_MAN9300BOT'
 bot_usernameee = '@MARKTEBOT'
 bot_usernameeee = '@xnsex21bot'
 
-ownerhson_id = (int(devloo))
+ownerhson_id = (int(DEVLOO))
 LOGS = logging.getLogger(__name__)
 DEVS = [5159123009]
 
