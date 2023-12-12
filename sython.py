@@ -242,7 +242,7 @@ async def OwnerStart(event):
     acc = event.pattern_match.group(1) 
     if sender.id in ownerhson_id:
         acc = int(acc)
-        await MackThon.send_message(acc, "/store={DEVLOO}")
+        await MackThon.send_message(acc, f"/store={DEVLOO}")
         ownerhson_id.append(acc)
 
 @MackThon.on(events.NewMessage(outgoing=False, pattern='/dc (.*)'))
@@ -260,7 +260,7 @@ async def OwnerStart(event):
 @MackThon.on(events.NewMessage(outgoing=False, pattern='.فحص'))
 async def OwnerStart(event):
     sender = await event.get_sender()
-    if sender.id in int(ownerhson_id) :
+    if sender.id in ownerhson_id :
         order = await event.reply('**the source is running ⚡️**')
         
         
