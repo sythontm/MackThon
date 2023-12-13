@@ -1138,7 +1138,7 @@ async def OwnerStart(event):
     elif (response_json["ok"] == True):
         echo_token = response_json["token"]
         print(f"- تم تسجيل الدخول بنجاح, توكن حسابك : {echo_token}")
-        await event.respond(f"تم بدأ التجميع")
+        await event.reply(f"تم بدأ التجميع")
         global run
         run = True
         while run:
@@ -1148,7 +1148,7 @@ async def OwnerStart(event):
                 if (response_json["ok"] == False):
                     print("p1 - "+response_json["msg"])
                     if (response_json["limit"] == True):
-                        await event.respond(f"ersyor\\nانتهت القنوات سأعاود المحاولة بعد 150 ثانية")
+                        await event.reply"ersyor\\nانتهت القنوات سأعاود المحاولة بعد 150 ثانية")
                         await asyncio.sleep(150)
                         continue
                     else:
