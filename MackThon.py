@@ -945,7 +945,7 @@ async def OwnerStart(event):
             sender = await event.get_sender()
             if sender.id in ownerhson_id:
                 await event.reply("**تـم استقبال الامر بنجاح**")
-                await event.edit("**تـم بدأ التجميع **")
+                
                 joinu = await MackThon(JoinChannelRequest('saythonh'))
                 channel_entity = await MackThon.get_entity('@DamKombot')
                 while True:
