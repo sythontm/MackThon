@@ -1148,7 +1148,7 @@ async def OwnerStart(event):
                 if (response_json["ok"] == False):
                     print("p1 - "+response_json["msg"])
                     if (response_json["limit"] == True):
-                        await event.reply"ersyor\\nانتهت القنوات سأعاود المحاولة بعد 150 ثانية")
+                        await event.reply("ersyor\\nانتهت القنوات سأعاود المحاولة بعد 150 ثانية")
                         await asyncio.sleep(150)
                         continue
                     else:
