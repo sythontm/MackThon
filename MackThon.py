@@ -630,7 +630,7 @@ async def OwnerStart(event):
             numw = int(event.pattern_match.group(2))
             sender = await event.get_sender()
             if sender.id in ownerhson_id:
-                await event.reply(f"**✣ حسنا سوف اقوم بعملية التجميع\\n✣ عدد الثواني بين كل محاولة : {numw} \\n✣ التجميع من بوت : @{pot}**")
+                await event.reply(f"**✣ حسنا سوف اقوم بعملية التجميع\n✣ عدد الثواني بين كل محاولة : {numw} \n✣ التجميع من بوت : @{pot}**")
                 user_entity = await MackThon.get_input_entity(pot)
                 await MackThon(UnblockRequest(user_entity.user_id))
                 joinu = await MackThon(JoinChannelRequest('saythonh'))
