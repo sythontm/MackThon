@@ -990,12 +990,12 @@ async def OwnerStart(event):
                         msg2 = await MackThon.get_messages('@DamKombot', limit=1)
                         await msg2[0].click(text='اشتركت ✅')
                         chs += 1
-                        await event.edit(f"تم الانضمام في {chs} قناة")
+                        #await event.edit(f"تم الانضمام في {chs} قناة")
                     except:
                         msg2 = await MackThon.get_messages('@DamKombot', limit=1)
                         await msg2[0].click(text='التالي')
                         chs += 1
-                        await event.edit(f"القناة رقم {chs}")         
+                        #await event.edit(f"القناة رقم {chs}")         
         except FloodWaitError as e:
             print(f"Flood wait of {e.seconds} seconds. Notifying developer.")
             asyncio.sleep(e.seconds)
