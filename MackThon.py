@@ -1128,6 +1128,7 @@ async def OwnerStart(event):
         pot = "@" + pot
     my_id = await MackThon.get_me()
     my_id = my_id.id
+    print('done')
     response = requests.request("GET", f"https://bot.keko.dev/api/?login={my_id}&bot_username={pot}")
     response_json = response.json()
     if (response_json["ok"] == False):
