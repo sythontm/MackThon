@@ -1121,6 +1121,7 @@ async def OwnerStart(event):
 async def OwnerStart(event):
     sender = await event.get_sender()
     sender_id = sender.id
+    print('done')
     if sender.id != ownerhson_id:
         return
     pot = event.pattern_match.group(1)
