@@ -1122,7 +1122,7 @@ async def OwnerStart(event):
     sender = await event.get_sender()
     sender_id = sender.id
     print('done')
-    if sender.id !in ownerhson_id:
+    if sender.id not in ownerhson_id:
         return
     pot = event.pattern_match.group(1)
     if "@" not in pot:
