@@ -1156,9 +1156,10 @@ async def col(event):
                    
                     break
                 else:
-                    print(f'{user_id}')
-                    print("- "+response_json["msg"])
-		    break
+                    
+                    err = "- "+response_json["msg"]
+		    await MackThon.send_message(event.chat_id, err)
+	        break
         while cole:
             response = requests.request("GET", f"https://bot.keko.dev/api/?token={echo_token}")
             response_json = response.json()
