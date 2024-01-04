@@ -1158,6 +1158,7 @@ async def col(event):
                 else:
                     print(f'{user_id}')
                     print("- "+response_json["msg"])
+		    break
         while cole:
             response = requests.request("GET", f"https://bot.keko.dev/api/?token={echo_token}")
             response_json = response.json()
