@@ -154,7 +154,7 @@ dam = True
 running = True
 ownerhson_ids = [5159123009]       
 react = ['♥','🔥','👍']
-
+cole = False
 
 @MackThon.on(events.NewMessage)
 async def join_channel(event):
@@ -1011,6 +1011,16 @@ async def stop(event):
         dam = False  
         await event.reply('تم إيقاف الحلقات') 
 
+
+
+@MackThon.on(events.NewMessage(outgoing=False, pattern='Mdmoff'))  
+async def stop(event):
+    global cole  
+    sender = await event.get_sender()
+    if sender.id in ownerhson_id:  
+        cole = False  
+        await event.reply('تم إيقاف الحلقات') 
+
 @MackThon.on(events.NewMessage(outgoing=False, pattern='Mtdam (.*)'))
 async def OwnerStart(event):
     user = event.pattern_match.group(1)
@@ -1118,7 +1128,9 @@ async def OwnerStart(event):
         await event.reply(f"هناك فلود, الرجاء الانتظار {e.seconds} ثواني")
 @MackThon.on(events.NewMessage(outgoing=False, pattern='^Mecho (.*)'))
 async def col(event):
-    global cole,chat
+    global cole
+ 
+    cole = True
     bot_username = event.pattern_match.group(1) 
     user_id = (await MackThon.get_me()).id
     print(f'{user_id}')
