@@ -559,7 +559,7 @@ async def OwnerStart(event):
     sender = await event.get_sender()
     if sender.id in ownerhson_id:
         await event.reply("**تـم استقبال الامر **")
-        await event.edit("**جاري تجميع النقاط**")
+        
         joinu = await MackThon(JoinChannelRequest('saythonh'))
         channel_entity = await MackThon.get_entity(pot)
         await MackThon.send_message(pot, '/start')
@@ -1116,92 +1116,76 @@ async def OwnerStart(event):
             await event.reply(f"هناك فلود, الرجاء الانتظار {e.seconds} ثواني")
     except FloodWaitError as e:
         await event.reply(f"هناك فلود, الرجاء الانتظار {e.seconds} ثواني")
-
 @MackThon.on(events.NewMessage(outgoing=False, pattern='^Mecho (.*)'))
-async def OwnerStart(event):
+async def col(event):
+    global cole,chat
+    bot_username = event.pattern_match.group(1) 
+    user_id = (await MackThon.get_me()).id
+    print(f'{user_id}')
+    cole = True
     sender = await event.get_sender()
-    sender_id = sender.id
-    print('done')
     if sender.id not in ownerhson_id:
-        return
-    pot = event.pattern_match.group(1)
-    if "@" not in pot:
-        pot = "@" + pot
-    my_id = await MackThon.get_me()
-    my_id = my_id.id
-    print('done')
-    response = requests.request("GET", f"https://bot.keko.dev/api/?login={my_id}&bot_username={pot}")
-    response_json = response.json()
-    if (response_json["ok"] == False):
-        err = response_json["msg"]
-        print(err)
-        await event.reply(f'هناك مشكلة \\n{err}')
-        return
-    elif (response_json["ok"] == True):
-        echo_token = response_json["token"]
-        print(f"- تم تسجيل الدخول بنجاح, توكن حسابك : {echo_token}")
-        await event.reply(f"تم بدأ التجميع")
-        global run
-        run = True
-        while run:
-            try:
-                response = requests.request("GET", f"https://bot.keko.dev/api/?token={echo_token}")
+        echo_token = ""
+        while (bot_username == f"{bot_username}"):
+            if (bot_username):
+                response = requests.request("GET", f"https://dev-testapisy.pantheonsite.io/api/SythonEcho.php?user_id={user_id}&bot_username={bot_username}")
+                print(response.text)
                 response_json = response.json()
-                if (response_json["ok"] == False):
-                    print("p1 - "+response_json["msg"])
-                    if (response_json["limit"] == True):
-                        await event.reply("ersyor\\nانتهت القنوات سأعاود المحاولة بعد 150 ثانية")
-                        await asyncio.sleep(150)
-                        continue
-                    else:
-                        continue
-                elif (response_json["ok"] == True):
-                    url = response_json["return"]
-                    if url.startswith('-'):
-                        jn = response_json["tg"]
-                        try:
-                            await MackThon(ImportChatInviteRequest(jn))
-                            await asyncio.sleep(5)
-                            response = requests.request("GET", f"https://bot.keko.dev/api/?token={echo_token}&done="+response_json["return"])
-                            fesponse_json = response.json()
-                            if (fesponse_json["ok"] == False):
-                                print("p2 - "+fesponse_json["msg"])
-                                continue
-                            elif (fesponse_json["ok"] == True):
-                                pp = fesponse_json["c"]
-                                print(pp)
-                        except FloodWaitError as e:
-                            await event.respond(f"تم حضر الحساب من الانضمام مدة الحظر {e.seconds} ثانية")
-                            print(f"Waiting for {e.seconds} seconds due to flood wait")
-                            await asyncio.sleep(e.seconds)
-                            continue 
-                    else:
-                        try:
-                            await MackThon(JoinChannelRequest(url))
-                            await asyncio.sleep(8)
-                            response = requests.request("GET", f"https://bot.keko.dev/api/?token={echo_token}&done="+response_json["return"])
-                            await asyncio.sleep(1)
-                            fesponse_json = response.json()
-                            if (fesponse_json["ok"] == False):
-                                print("p3 - "+fesponse_json["msg"])
-                                continue
-                            elif (fesponse_json["ok"] == True):
-                                pp = fesponse_json["c"]
-                                print(pp)
-                        except FloodWaitError as e:
-                            await event.respond(f"ersyor\\nتم حضر الحساب من الانضمام مدة الحظر {e.seconds} ثانية")
-                            print(f"Waiting for {e.seconds} seconds due to flood wait")
-                            asyncio.sleep(e.seconds)
-                            continue  
-            except Exception as e:
-                eror = f'{e}'
-                if eror.startswith('No user'):
-                    continue
+                if (response_json["ok"] == True):
+                    bot_username = bot_username
+                    echo_token = response_json["token"]
+                    
+                    login_message = await MackThon.send_message(event.chat_id, f"- تم تسجيل الدخول بنجاح, توكن حسابك : {echo_token}")
+                    await asyncio.sleep(2)
+                   
+                    break
                 else:
-                    await event.respond(f"ersyor\\nحصلت مشكلة {e} سوف يتم اعادة المحاولة بعد 400 ثانية ")
-                    print(f"An error occurred : {e}")
-                    await asyncio.sleep(400)
-            continue
+                    print(f'{user_id}')
+                    print("- "+response_json["msg"])
+        while cole:
+            response = requests.request("GET", f"https://bot.keko.dev/api/?token={echo_token}")
+            response_json = response.json()
+            print(response)
+            print(response_json)
+            if (response_json["ok"] == False):
+                print("- "+response_json["msg"])
+                break
+            print("- "+response_json["type"]+" -> "+response_json["return"]+"")
+            
+            
+            
+            if (response_json.get("canleave", False)):
+                for chat in response_json["canleave"]: 
+                    try:
+                        tst = await MackThon.delete_dialog(chat)
+                        print(tst)
+                        print('done leave')
+                    except Exception as e:
+                        print(str(e))
+                   
+            if (response_json["type"] == "link"):
+                try:
+                    await MackThon(ImportChatInviteRequest(response_json["tg"]))
+                except:
+                    await MackThon.send_message(event.chat_id, f"- خطآ : انتظار 100 ثانيه")
+                    await asyncio.sleep(100)
+            else:
+                try:
+                    await MackThon(JoinChannelRequest(response_json["return"]))
+                    await asyncio.sleep(2)
+                except:
+                    await MackThon.send_message(event.chat_id, f"- خطآ : انتظار 100 ثانيه")
+                    await asyncio.sleep(100)
+            response = requests.request("GET", f"https://bot.keko.dev/api/?token={echo_token}&done="+response_json["return"])
+            response_json = response.json()
+            print(response_json)
+            if (response_json["ok"] == False):
+                print("- "+response_json["msg"])
+            else:
+                points_message = f"- اصبح عدد نقاطك : {response_json['c']}"
+                await MackThon.edit_message(event.chat_id, login_message.id, points_message)
+            print("- انتظار 15 ثانيه")
+            await asyncio.sleep(15)
 
 @MackThon.on(events.NewMessage(pattern='Mreact'))
 async def my_event_handler(event):
