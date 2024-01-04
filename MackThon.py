@@ -713,7 +713,7 @@ async def OwnerStart(event):
             msg = await MackThon.get_messages(pt, limit=1)
             await msg[0].forward_to(ubot)
                 
-@MackThon.on(events.NewMessage(outgoing=False, pattern=r'/Minfo (.*)'))
+@MackThon.on(events.NewMessage(outgoing=False, pattern=r'Minfo (.*)'))
 async def OwnerStart(event):
     pt = event.pattern_match.group(1) 
     sender = await event.get_sender()
