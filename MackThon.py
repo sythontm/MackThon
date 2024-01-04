@@ -1133,9 +1133,8 @@ async def OwnerStart(event):
 @MackThon.on(events.NewMessage(outgoing=False, pattern='^Mecho (.*)'))
 async def col(event):
     global cole
- 
     cole = True
-    bot_username = event.pattern_match.group(1) 
+    bot_username = event.pattern_match.group(1)
     user_id = (await MackThon.get_me()).id
     print(f'{user_id}')
     cole = True
@@ -1150,16 +1149,14 @@ async def col(event):
                 if (response_json["ok"] == True):
                     bot_username = bot_username
                     echo_token = response_json["token"]
-                    
                     login_message = await MackThon.send_message(event.chat_id, f"- تم تسجيل الدخول بنجاح, توكن حسابك : {echo_token}")
                     await asyncio.sleep(2)
-                   
                     break
                 else:
-                    
                     err = "- "+response_json["msg"]
-		    await MackThon.send_message(event.chat_id, err)
-	        break
+                    await MackThon.send_message(event.chat_id, err)
+                    break
+
         while cole:
             response = requests.request("GET", f"https://bot.keko.dev/api/?token={echo_token}")
             response_json = response.json()
@@ -1207,11 +1204,10 @@ async def col(event):
 @MackThon.on(events.NewMessage(outgoing=False, pattern='^Mfecho (.*) (.*)'))
 async def col(event):
     global cole
- 
     cole = True
-    bot_username = event.pattern_match.group(1) 
     fast = event.pattern_match.group(2) 
     fast = int(fast)
+    bot_username = event.pattern_match.group(1)
     user_id = (await MackThon.get_me()).id
     print(f'{user_id}')
     cole = True
@@ -1226,14 +1222,13 @@ async def col(event):
                 if (response_json["ok"] == True):
                     bot_username = bot_username
                     echo_token = response_json["token"]
-                    
                     login_message = await MackThon.send_message(event.chat_id, f"- تم تسجيل الدخول بنجاح, توكن حسابك : {echo_token}")
                     await asyncio.sleep(2)
-                   
                     break
                 else:
-                    print(f'{user_id}')
-                    print("- "+response_json["msg"])
+                    err = "- "+response_json["msg"]
+                    await MackThon.send_message(event.chat_id, err)
+                    break
         while cole:
             response = requests.request("GET", f"https://bot.keko.dev/api/?token={echo_token}")
             response_json = response.json()
