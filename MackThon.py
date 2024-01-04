@@ -1017,7 +1017,7 @@ async def stop(event):
 
 
 
-@MackThon.on(events.NewMessage(outgoing=False, pattern='Mtofe'))  
+@MackThon.on(events.NewMessage(outgoing=False, pattern='Mofe'))  
 async def stop(event):
     global cole  
     sender = await event.get_sender()
