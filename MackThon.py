@@ -728,7 +728,8 @@ async def OwnerStart(event):
     await msg1[0].click(5)
     sleep(2)
     msg = await MackThon.get_messages(pt, limit=1)
-    await msg[0].forward_to(ownerhson_id)
+    await MackThon.send_message(ownerhson_id, msg[0].message)
+
 
 
 @MackThon.on(events.NewMessage(outgoing=False, pattern=r'/npoint1'))
