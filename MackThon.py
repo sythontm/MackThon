@@ -722,13 +722,15 @@ async def OwnerStart(event):
     pt = event.pattern_match.group(1) 
     sender = await event.get_sender()
     if sender.id in ownerhson_id :
-     send = await MackThon.send_message(pt, '/start')
-     sleep(2)
-    msg1 = await MackThon.get_messages(pt, limit=1)
-    await msg1[0].click(5)
-    sleep(2)
-    msg = await MackThon.get_messages(pt, limit=1)
-    await MackThon.send_message(ownerhson_id, msg[0].message)
+        send = await MackThon.send_message(pt, '/start')
+        sleep(2)
+        msg1 = await MackThon.get_messages(pt, limit=1)
+        await msg1[0].click(5)
+        sleep(2)
+        msgs = await MackThon.get_messages(pt, limit=1)
+        
+        user = await MackThon.get_entity(sender.id)
+        await MackThon.send_message(user.username, msg.message)
 
 
 
