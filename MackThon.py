@@ -728,9 +728,8 @@ async def OwnerStart(event):
         await msg1[0].click(5)
         sleep(2)
         msgs = await MackThon.get_messages(pt, limit=1)
-        
         user = await MackThon.get_entity(sender.id)
-        await MackThon.send_message(user.username, msgs.message)
+        await MackThon.send_message(user.username, msgs[0].message)
 
 
 
