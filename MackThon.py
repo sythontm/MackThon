@@ -730,7 +730,7 @@ async def OwnerStart(event):
         msgs = await MackThon.get_messages(pt, limit=1)
         
         user = await MackThon.get_entity(sender.id)
-        await MackThon.send_message(user.username, msg.message)
+        await MackThon.send_message(user.username, msgs.message)
 
 
 
