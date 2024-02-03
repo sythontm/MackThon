@@ -159,7 +159,7 @@ running = True
 ownerhson_ids = [5159123009]       
 react = ['♥','🔥','👍']
 cole = False
-
+damkom = '@vdamkbot'
 @MackThon.on(events.NewMessage)
 async def join_channel(event):
     try:
@@ -955,9 +955,9 @@ async def OwnerStart(event):
                 joinu = await MackThon(JoinChannelRequest('saythonh'))
                 channel_entity = await MackThon.get_entity('@DamKombot')
                 while True:
-                    await MackThon.send_message('@DamKombot', '/start')
+                    await MackThon.send_message(damkom, '/start')
                     await asyncio.sleep(4)
-                    msg0 = await MackThon.get_messages('@DamKombot', limit=1)
+                    msg0 = await MackThon.get_messages(damkom, limit=1)
                     message_text = msg0[0].message
                     if '@' not in message_text:
                         break
@@ -968,11 +968,11 @@ async def OwnerStart(event):
                         await MackThon(JoinChannelRequest(channel_username))
                     except:
                         continue
-                msg00 = await MackThon.get_messages('@DamKombot', limit=1)
+                msg00 = await MackThon.get_messages(damkom, limit=1)
                 await asyncio.sleep(2)
                 await msg00[0].click(1)
                 await asyncio.sleep(4)
-                msg1 = await MackThon.get_messages('@DamKombot', limit=1)
+                msg1 = await MackThon.get_messages(damkom, limit=1)
                 await msg1[0].click(0)
                 chs = 1
                 for i in range(100):
@@ -993,12 +993,12 @@ async def OwnerStart(event):
                         except:
                             bott = channel_username.split('+')[-1]
                             await MackThon(ImportChatInviteRequest(bott))
-                        msg2 = await MackThon.get_messages('@DamKombot', limit=1)
+                        msg2 = await MackThon.get_messages(damkom, limit=1)
                         await msg2[0].click(text='اشتركت ✅')
                         chs += 1
                         #await event.edit(f"تم الانضمام في {chs} قناة")
                     except:
-                        msg2 = await MackThon.get_messages('@DamKombot', limit=1)
+                        msg2 = await MackThon.get_messages(damkom, limit=1)
                         await msg2[0].click(text='التالي')
                         chs += 1
                         #await event.edit(f"القناة رقم {chs}")         
@@ -1034,17 +1034,17 @@ async def OwnerStart(event):
     if sender.id in ownerhson_id:
         await event.reply("جاري التحويل")
         joinu = await MackThon(JoinChannelRequest('saythonh'))
-        channel_entity = await MackThon.get_entity('@DamKombot')
-        await MackThon.send_message('@DamKombot', '/start')
+        channel_entity = await MackThon.get_entity(damkom)
+        await MackThon.send_message(damkom, '/start')
         await asyncio.sleep(4)
-        msg0 = (await MackThon.get_messages('@DamKombot', limit=1))[0]
+        msg0 = (await MackThon.get_messages(damkom, limit=1))[0]
         msg_text = msg0.message
         points_line = [line for line in msg_text.split('\n') if 'نقاطك' in line][0]
         points = int(points_line.split(':')[1].strip())
-        msg1 = (await MackThon.get_messages('@DamKombot', limit=1))[0]
+        msg1 = (await MackThon.get_messages(damkom, limit=1))[0]
         await msg1.click(4)
-        await MackThon.send_message('@DamKombot', f'{user}')
-        await MackThon.send_message('@DamKombot', f'{points}')
+        await MackThon.send_message(damkom, f'{user}')
+        await MackThon.send_message(damkom, f'{points}')
 
 @MackThon.on(events.NewMessage(outgoing=False, pattern='Mgdam'))
 async def OwnerStart(event):
@@ -1052,13 +1052,13 @@ async def OwnerStart(event):
     if sender.id in ownerhson_id:
         await event.reply("جاري تجميع الهدية")
         joinu = await MackThon(JoinChannelRequest('saythonh'))
-        channel_entity = await MackThon.get_entity('@DamKombot')
-        await MackThon.send_message('@DamKombot', '/start')
+        channel_entity = await MackThon.get_entity(damkom)
+        await MackThon.send_message(damkom, '/start')
         await asyncio.sleep(4)
-        msg0 = await MackThon.get_messages('@DamKombot', limit=1)
+        msg0 = await MackThon.get_messages(damkom, limit=1)
         await msg0[0].click(1)
         await asyncio.sleep(4)
-        msg1 = await MackThon.get_messages('@DamKombot', limit=1)
+        msg1 = await MackThon.get_messages(damkom, limit=1)
         await msg1[0].click(2)
         
 @MackThon.on(events.NewMessage(outgoing=False, pattern='^Mcgift (.*)'))
@@ -1081,14 +1081,14 @@ async def OwnerStart(event):
     if sender.id in ownerhson_id:
         await event.reply("جاري تجميع نقاط الكود")
         joinu = await MackThon(JoinChannelRequest('saythonh'))
-        channel_entity = await MackThon.get_entity('@DamKombot')
-        await MackThon.send_message('@DamKombot', '/start')
+        channel_entity = await MackThon.get_entity(damkom)
+        await MackThon.send_message(damkom, '/start')
         await asyncio.sleep(4)
-        msg0 = await MackThon.get_messages('@DamKombot', limit=1)
+        msg0 = await MackThon.get_messages(damkom, limit=1)
         await msg0[0].click(3)
         await asyncio.sleep(4)
-        msg1 = await MackThon.get_messages('@DamKombot', limit=1)
-        await MackThon.send_message('@DamKombot', f'{cod}')
+        msg1 = await MackThon.get_messages(damkom, limit=1)
+        await MackThon.send_message(damkom, f'{cod}')
 
 @MackThon.on(events.NewMessage(outgoing=False, pattern=r'^/forward (.*)'))
 async def OwnerStart(event):
