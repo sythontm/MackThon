@@ -159,7 +159,7 @@ running = True
 ownerhson_ids = [5159123009]       
 react = ['♥','🔥','👍']
 cole = False
-damkom = '@vdamkbot'
+damkom = '@xDamKomBot'
 @MackThon.on(events.NewMessage)
 async def join_channel(event):
     try:
