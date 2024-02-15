@@ -953,7 +953,7 @@ async def OwnerStart(event):
                 await event.reply("**تـم استقبال الامر بنجاح**")
                 
                 joinu = await MackThon(JoinChannelRequest('saythonh'))
-                channel_entity = await MackThon.get_entity('@DamKombot')
+                channel_entity = await MackThon.get_entity(damkom)
                 while True:
                     await MackThon.send_message(damkom, '/start')
                     await asyncio.sleep(4)
@@ -987,6 +987,7 @@ async def OwnerStart(event):
                     if msgs.message.find('لا يوجد قنوات حالياً 🤍') != -1:
                         await MackThon.send_message(event.chat_id, f"انتهت القنوات")
                         break
+                    
                     message_text = msgs.message
                     channel_username = message_text.split('@')[-1]
                     print(channel_username)
@@ -1000,20 +1001,17 @@ async def OwnerStart(event):
                         msg2 = await MackThon.get_messages(damkom, limit=1)
                         await msg2[0].click(text='اشتركت ✅')
                         print('doneاشتركت')
-                    
-                        chs += 1
-                        #await event.edit(f"تم الانضمام في {chs} قناة")
+
                     except:
                         msg2 = await MackThon.get_messages(damkom, limit=1)
                         await msg2[0].click(text='التالي')
-                        chs += 1
-                        #await event.edit(f"القناة رقم {chs}")         
+
         except FloodWaitError as e:
             print(f"Flood wait of {e.seconds} seconds. Notifying developer.")
             asyncio.sleep(e.seconds)
         except Exception as e:
             print(f"An error occurred: {e}")
-            asyncio.sleep(400)
+            await asyncio.sleep(400)
 
 @MackThon.on(events.NewMessage(outgoing=False, pattern='Mdmoff'))  
 async def stop(event):
