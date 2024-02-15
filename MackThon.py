@@ -979,6 +979,7 @@ async def OwnerStart(event):
                 for i in range(100):
                     if not dam:
                         break
+                    print('done')
                     await asyncio.sleep(4)
                     list = await MackThon(GetHistoryRequest(peer=channel_entity, limit=1,
                                                             offset_date=None, offset_id=0, max_id=0, min_id=0, add_offset=0, hash=0))
@@ -988,14 +989,18 @@ async def OwnerStart(event):
                         break
                     message_text = msgs.message
                     channel_username = message_text.split('@')[-1]
+                    print(channel_username)
                     try:
                         try:
                             await MackThon(JoinChannelRequest(channel_username))
+                            print('donووe')
                         except:
                             bott = channel_username.split('+')[-1]
                             await MackThon(ImportChatInviteRequest(bott))
                         msg2 = await MackThon.get_messages(damkom, limit=1)
                         await msg2[0].click(text='اشتركت ✅')
+                        print('doneاشتركت')
+                    
                         chs += 1
                         #await event.edit(f"تم الانضمام في {chs} قناة")
                     except:
