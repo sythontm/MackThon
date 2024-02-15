@@ -974,7 +974,7 @@ async def OwnerStart(event):
                 await asyncio.sleep(4)
                 msg1 = await MackThon.get_messages(damkom, limit=1)
                 await msg1[0].click(0)
-		await asyncio.sleep(4)
+                await asyncio.sleep(4)
 
                 for i in range(100):
                     if not dam:
