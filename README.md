@@ -1,10 +1,10 @@
 
 
-**• اتمنى ماتسرق الملفات والاكواد او اذكر الحقوق على الاقل : SYTHON TM**  
+**• اتمنى ماتسرق الملفات والاكواد او اذكر الحقوق على الاقل :  تيم كبينه**  
 **• تاريخ انشاء الريبو والسورس : 2023/12/12**  
-###     قناة السورس : [MackThon](https://t.me/MackThon) ###
+###     قناة السورس : [BLACKTHON](https://t.me/zxthon) ###
 
 
 
 
-![SYTHON](https://telegra.ph/file/b2118819437797b5300a6.png)
+![SYTHON](https://telegra.ph/file/8cdc080e386ae441fb400.jpg)
